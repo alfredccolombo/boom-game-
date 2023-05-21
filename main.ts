@@ -153,7 +153,9 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     p1.x += -10
 })
 info.onScore(10, function () {
+    music.stopAllSounds()
     game.gameOver(true)
+    game.setGameOverEffect(true, effects.smiles)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     p1.setImage(assets.image`dino0`)
@@ -162,6 +164,11 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     p1.y += 10
+})
+info.onLifeZero(function () {
+    music.stopAllSounds()
+    game.gameOver(false)
+    game.setGameOverEffect(false, effects.melt)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (sprite == player_shot) {
