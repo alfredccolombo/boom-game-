@@ -20,6 +20,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . 1 1 3 . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, p1, direction * 50, 0)
+    music.play(music.createSoundEffect(WaveShape.Square, 1600, 1, 255, 0, 300, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
     if (direction >= 0) {
         animation.runImageAnimation(
         player_shot,
@@ -141,6 +142,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
     if (sprite == com_shot) {
         info.changeLifeBy(-1)
+        music.play(music.createSoundEffect(WaveShape.Square, 764, 1, 255, 0, 211, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
         animation.stopAnimation(animation.AnimationTypes.All, com_shot)
         sprites.destroy(com_shot)
     }
@@ -164,6 +166,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (sprite == player_shot) {
         info.changeScoreBy(1)
+        music.play(music.createSoundEffect(WaveShape.Square, 764, 1, 255, 0, 211, SoundExpressionEffect.Warble, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
         animation.stopAnimation(animation.AnimationTypes.All, player_shot)
         sprites.destroy(player_shot)
     }
@@ -329,6 +332,7 @@ com.setPosition(122, 56)
 info.setLife(5)
 info.setScore(0)
 direction = 1
+music.play(music.createSong(hex`0078000408020300001c00010a006400f4016400000400000000000000000000000000050000040c0000000400012a08000c00012403001c0001dc00690000045e0100040000000000000000000005640001040003060010001400012a06001c00010a006400f401640000040000000000000000000000000000000002120018001c00012a200024000120240028000127`), music.PlaybackMode.LoopingInBackground)
 game.onUpdateInterval(5000, function () {
     enemy_direction = p1.x - com.x
     if (enemy_direction >= 0) {
@@ -354,6 +358,7 @@ game.onUpdateInterval(5000, function () {
         . . . . . . . 1 1 3 . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, com, enemy_direction * 50, 0)
+    music.play(music.createSoundEffect(WaveShape.Triangle, 3597, 1279, 217, 8, 300, SoundExpressionEffect.Warble, InterpolationCurve.Logarithmic), music.PlaybackMode.UntilDone)
     if (enemy_direction >= 0) {
         animation.runImageAnimation(
         com_shot,
